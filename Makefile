@@ -2,15 +2,10 @@
 # with Go source code. If you know what GOPATH is then you probably
 # don't need to bother with make.
 
-.PHONY: all test clean
+.PHONY: build test
 
-GOBIN = build/bin
+build:
+	go build -o build/ github.com/sammy007/open-ethereum-pool
 
-all:
-	build/env.sh go get -v ./...
-
-test: all
-	build/env.sh go test -v ./...
-
-clean:
-	rm -fr build/_workspace/pkg/ $(GOBIN)/*
+test: build
+	go test ./...
